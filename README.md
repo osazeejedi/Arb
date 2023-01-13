@@ -1,13 +1,9 @@
-# Sample Hardhat Project
+#this arbitrage contract can be used to arbitrage between Uniswap V2 like AMMs.
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
 
-Try running some of the following tasks:
+The contract has a function getProfit(address pool1, address pool2), which can be used to calculate the maximum profit between two pairs(denominated in base token).
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+The bot need to call getProfit() to get the possible profit between token pairs. Once it is profitable, bot calls flashArbitrage(pool1, pool2) to do the arbitrage. The profit will leaves in the contract address.
+
+Contract owner can call withdraw() to withdraw the profit.
+
